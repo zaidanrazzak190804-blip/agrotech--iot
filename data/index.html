@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agrotech IoT Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gaugeJS/dist/gauge.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>🌱 Agrotech IoT Dashboard</h1>
+    <p id="waktu">--</p>
+  </header>
+
+  <div class="container">
+
+    <!-- KARTU SENSOR -->
+    <div class="card-row">
+      <div class="card">
+        <p class="label">🌡️ Suhu</p>
+        <p class="nilai" id="suhu">--</p>
+        <p class="satuan">°C</p>
+      </div>
+      <div class="card">
+        <p class="label">💧 Kelembapan Udara</p>
+        <p class="nilai" id="humidity">--</p>
+        <p class="satuan">%</p>
+      </div>
+      <div class="card">
+        <p class="label">🌍 Kelembapan Tanah</p>
+        <p class="nilai" id="soil">--</p>
+        <p class="satuan">%</p>
+      </div>
+    </div>
+
+    <!-- GAUGE KELEMBAPAN TANAH -->
+    <div class="section">
+      <h2>Gauge — Kelembapan Tanah</h2>
+      <div class="gauge-wrap">
+        <canvas id="gaugeCanvas" width="300" height="180"></canvas>
+        <p id="gaugeLabel">0 %</p>
+      </div>
+    </div>
+
+    <!-- LINE GRAPH DHT21 -->
+    <div class="section">
+      <h2>Line Graph — Suhu & Kelembapan Udara (DHT21)</h2>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+    <!-- KONTROL RELAY -->
+    <div class="section">
+      <h2>Kontrol Aktuator</h2>
+      <div class="btn-row">
+        <div class="aktuator">
+          <p>🌀 Fan / Kipas</p>
+          <p class="status-label" id="statusFan">Status: --</p>
+          <button class="btn btn-on"  onclick="kontrolRelay('fan','on')">ON</button>
+          <button class="btn btn-off" onclick="kontrolRelay('fan','off')">OFF</button>
+        </div>
+        <div class="aktuator">
+          <p>💦 Pompa Air</p>
+          <p class="status-label" id="statusPompa">Status: --</p>
+          <button class="btn btn-on"  onclick="kontrolRelay('pompa','on')">ON</button>
+          <button class="btn btn-off" onclick="kontrolRelay('pompa','off')">OFF</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
