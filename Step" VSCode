@@ -1,0 +1,18 @@
+File → Open Folder
+Pilih lokasi di dekstop
+Klik New Folder → beri nama agrotech (contoh), klik select folder.
+Klik icon New Folder (ada di sebelah nama folder agrotech)
+Ketik data → Enter
+Klik folder data, Klik icon New File, Ketik index.html → Enter
+Klik folder data, Klik icon New File, Ketik style.css → Enter
+Klik folder data, Klik icon New File, Ketik script.js → Enter.
+Klik folder agrotech (bukan folder data)
+Klik icon New File
+Ketik agrotech.ino → Enter
+-----------------------------------------------------------------
+📁 agrotech
+├── 📄 agrotech.ino    ← file baru ini
+└── 📁 data
+    ├── 📄 index.html
+    ├── 📄 style.css
+    └── 📄 script.js
