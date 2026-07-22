@@ -3,3 +3,17 @@
   - LiquidCrystalI2C (Frank de Bruijn)
   - ESPAsyncWebServer (lacamera)
   - AsyncTCP (dvarrel)
+----------------------------------------
+    PIN KE ESP
+
+DHT21 = GPIO 4
+Soil Sensor = GPIO 34
+Relay 1(Fan) = GPIO 26
+Relay 2(Pompa) = GPIO 27
+LCD (SDA) = GPIO 21
+LCD (SCL) = GPIO 22
+
+Suhu > 35C = Fan ON, Kelembaban Tanah < 40% = Pompa ON.
+---------------------------------------------------------
+
+
