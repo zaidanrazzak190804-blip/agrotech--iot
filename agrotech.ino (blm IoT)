@@ -1,0 +1,108 @@
+#include <DHT.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// ===== DEFINISI PIN =====
+#define DHT_PIN     4
+#define DHT_TYPE    DHT21
+#define SOIL_PIN    34
+#define RELAY_FAN   26
+#define RELAY_POMPA 27
+
+// ===== OBJEK =====
+DHT dht(DHT_PIN, DHT_TYPE);
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+// ===== THRESHOLD =====
+#define SUHU_MAX      35.0
+#define SOIL_KERING   40
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Inisialisasi pin relay
+  pinMode(RELAY_FAN, OUTPUT);
+  pinMode(RELAY_POMPA, OUTPUT);
+  digitalWrite(RELAY_FAN, HIGH);   // HIGH = OFF (relay aktif LOW)
+  digitalWrite(RELAY_POMPA, HIGH);
+  
+  // Inisialisasi DHT
+  dht.begin();
+  
+  // Inisialisasi LCD
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("  Agrotech IoT  ");
+  lcd.setCursor(0, 1);
+  lcd.print("  Initializing  ");
+  delay(2000);
+  lcd.clear();
+}
+
+void loop() {
+  // Baca sensor DHT21
+  float suhu = dht.readTemperature();
+  float kelembapanUdara = dht.readHumidity();
+  
+  // Baca sensor tanah (0-4095 → konversi ke persen)
+  int soilRaw = analogRead(SOIL_PIN);
+  int soilPersen = map(soilRaw, 4095, 0, 0, 100);
+  
+  // Cek sensor error
+  if (isnan(suhu) || isnan(kelembapanUdara)) {
+    lcd.setCursor(0, 0);
+    lcd.print("DHT Error!      ");
+    return;
+  }
+  
+  // ===== LOGIKA KONTROL =====
+  // Fan: ON jika suhu > 35°C
+  if (suhu > SUHU_MAX) {
+    digitalWrite(RELAY_FAN, LOW);   // ON
+  } else {
+    digitalWrite(RELAY_FAN, HIGH);  // OFF
+  }
+  
+  // Pompa: ON jika tanah kering < 40%
+  if (soilPersen < SOIL_KERING) {
+    digitalWrite(RELAY_POMPA, LOW);   // ON
+  } else {
+    digitalWrite(RELAY_POMPA, HIGH);  // OFF
+  }
+  
+  // ===== TAMPILAN LCD =====
+  // Baris 1: Suhu
+  lcd.setCursor(0, 0);
+  lcd.print("Suhu: ");
+  lcd.print(suhu, 1);
+  lcd.print("C  ");
+  
+  // Baris 2: Kelembapan udara
+  lcd.setCursor(0, 1);
+  lcd.print("Hum : ");
+  lcd.print(kelembapanUdara, 1);
+  lcd.print("%  ");
+  
+  // Baris 3: Kelembapan tanah
+  lcd.setCursor(0, 2);
+  lcd.print("Tanah: ");
+  lcd.print(soilPersen);
+  lcd.print("%     ");
+  
+  // Baris 4: Status aktuator
+  lcd.setCursor(0, 3);
+  lcd.print("Fan:");
+  lcd.print(suhu > SUHU_MAX ? "ON " : "OFF");
+  lcd.print(" Pmp:");
+  lcd.print(soilPersen < SOIL_KERING ? "ON " : "OFF");
+  
+  // Serial monitor
+  Serial.print("Suhu: "); Serial.print(suhu);
+  Serial.print(" | Hum: "); Serial.print(kelembapanUdara);
+  Serial.print(" | Tanah: "); Serial.print(soilPersen);
+  Serial.print("% | Fan: "); Serial.print(suhu > SUHU_MAX ? "ON" : "OFF");
+  Serial.print(" | Pompa: "); Serial.println(soilPersen < SOIL_KERING ? "ON" : "OFF");
+  
+  delay(2000);
+}
