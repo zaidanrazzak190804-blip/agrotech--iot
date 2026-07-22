@@ -1,0 +1,5 @@
+1. Install Library
+  - DHT sensor library (Adafruit)
+  - LiquidCrystalI2C (Frank de Bruijn)
+  - ESPAsyncWebServer (lacamera)
+  - AsyncTCP (dvarrel)
