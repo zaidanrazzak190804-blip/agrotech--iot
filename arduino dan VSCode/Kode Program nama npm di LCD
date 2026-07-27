@@ -1,0 +1,30 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Inisialisasi LCD I2C
+// Alamat I2C LCD umumnya 0x27
+// Ukuran LCD: 16 kolom x 2 baris
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  // Inisialisasi LCD
+  lcd.init();
+
+  // Menyalakan lampu latar LCD
+  lcd.backlight();
+
+  // Menampilkan identitas pada LCD
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("ID: Zaidan");
+
+  lcd.setCursor(0, 1);
+  lcd.print("Razzak_21122502");
+
+  // Menampilkan selama 3 detik
+  delay(3000);
+}
+
+void loop() {
+  // Program utama
+}
