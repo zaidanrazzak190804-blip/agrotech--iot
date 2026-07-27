@@ -1,0 +1,19 @@
+1)  Permasalahan= Tegangan catu daya tidak sesuai.
+    Cara Identifikasi= Mengukur tegangan antara VCC dan GND.
+    Solusi= Memeriksa sumber tegangan, kabel, konektor, dan jalur PCB.
+
+2)  Permasalahan= Sensor tidak mengeluarkan data analog.
+    Cara Identifikasi= Mengukur tegangan pada pin A_OUT menggunakan multimeter.
+    Solusi= Memeriksa koneksi sensor, jalur PCB, dan catu daya.
+
+3)  Permasalahan= Nilai keluaran sensor tidak stabil.
+    Cara Identifikasi= Mengukur tegangan output secara berulang pada kondisi sensor yang sama.
+    Solusi= Memeriksa koneksi sensor, kualitas catu daya, dan kemungkinan adanya jalur PCB yang kurang baik.
+
+4)  Permasalahan= Output digital tidak berubah.
+    Cara Identifikasi= Mengukur tegangan pada pin D_OUT saat kondisi sensor berubah.
+    Solusi= Memeriksa potensiometer, IC LM393, dan jalur koneksi rangkaian.
+
+5)  Permasalahan= LED indikator tidak menyala.
+    Cara Identifikasi= Memeriksa tegangan pada LED dan menguji LED menggunakan multimeter.
+    Solusi= Memeriksa polaritas LED, resistor pembatas arus, dan jalur PCB.
