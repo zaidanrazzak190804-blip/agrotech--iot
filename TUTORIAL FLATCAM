@@ -1,0 +1,55 @@
+Step 1 — Export Gerber dari KiCad dulu
+Di KiCad PCB Editor:
+File → Plot
+Format: Gerber
+Centang layer: F.Cu dan Edge.Cuts
+Klik Plot
+Klik Generate Drill Files → Generate Drill File
+Klik Close
+
+Step 2 — Import ke FlatCAM
+Buka FlatCAM:
+File → Open Gerber → pilih sensor_tanah-F_Cu.gbr
+File → Open Gerber lagi → pilih sensor_tanah-Edge_Cuts.gbr
+File → Open Excellon → pilih sensor_tanah-PTH.drl
+
+Step 3 — Buat Jalur Milling (Routing Job)
+Klik file F_Cu.gbr di panel kiri
+Klik tab Isolation Tool
+Setting:
+Tool dia: 0.1mm
+Pass: 1
+Klik Generate Geometry
+Klik geometry yang muncul di panel kiri
+Tab Properties → scroll bawah
+Setting:
+Cut Z: -0.1
+Travel Z: 2.0
+Feedrate X-Y: 120
+Feedrate Z: 60
+Klik Generate CNCJob object
+Screenshot tampilan ini → SS Jalur Milling ✅
+Klik Save CNC Code → simpan file .gcode
+
+Step 4 — Buat Titik Drilling
+Klik file PTH.drl di panel kiri
+Tab Properties → klik Drilling Tool
+Centang semua tool
+Setting:
+Cut Z: -1.7
+Travel Z: 2.0
+Klik Generate CNCJob object
+Screenshot tampilan ini → SS Titik Drilling ✅
+Klik Save CNC Code → simpan file .gcode drill
+
+Save G-Code Milling
+Klik sensor_tanah-F_Cu.gbr_iso_combin... di panel kiri (bagian CNC Job)
+Tab Properties
+Scroll bawah → klik Save CNC Code
+Simpan dengan nama milling.gcode
+
+Save G-Code Drilling
+Klik sensor_tanah-PTH.drl_cnc di panel kiri
+Tab Properties
+Scroll bawah → klik Save CNC Code
+Simpan dengan nama drilling.gcode
