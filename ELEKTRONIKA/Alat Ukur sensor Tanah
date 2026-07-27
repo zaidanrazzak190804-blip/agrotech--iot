@@ -1,0 +1,8 @@
+Catu Daya -> Power On = 5,0 V
+          -> Power Off = 0 V
+
+Output Analog Sensor -> Sensor dalam kondisi tanah kering = 0,25V
+                     -> Sensor dalam kondisi tanah basah = 3,80V
+
+Output Digital Sensor -> Kondisi di bawah batas pH/threshold = 0 V (LOW)
+                      -> Kondisi di atas batas pH/threshold = 5 V (HIGH)
