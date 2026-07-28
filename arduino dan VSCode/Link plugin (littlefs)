@@ -1,0 +1,14 @@
+1. Download plugin dari GitHub :
+https://github.com/lorol/arduino-esp
+32fs-plugin/releases
+
+2. Ekstrak plugin ke folder :
+C:\Users\<USERNAME>\Documents\A
+rduino\tools\ESP32FS\tool\
+
+File .jar harus berada di :
+Arduino\tools\ESP32FS\tool\esp32fs.j
+ar
+
+3. Restart Arduino IDE → Menu Tools
+> ESP32 Sketch Data Upload akan
